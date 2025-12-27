@@ -1,0 +1,37 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Dashboard - Django Auth{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="auth-card">
+            <h2 class="text-center mb-4">Dashboard</h2>
+            
+            <div class="alert alert-success">
+                <h4>Welcome, {{ user.get_full_name }}!</h4>
+                <p class="mb-0">You are successfully logged in.</p>
+            </div>
+            
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Your Information</h5>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <p><strong>Name:</strong> {{ user.get_full_name }}</p>
+                    <p><strong>Account Created:</strong> {{ user.date_joined|date:"F d, Y" }}</p>
+                    <p class="mb-0">
+                        <strong>Email Verified:</strong> 
+                        {% if user.is_verified %}
+                            <span class="badge bg-success">Yes</span>
+                        {% else %}
+                            <span class="badge bg-warning">Not yet</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            
+            <a href="{% url 'accounts:logout' %}" class="btn btn-danger w-100">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

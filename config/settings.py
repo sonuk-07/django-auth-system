@@ -120,4 +120,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 #tell django to use our custom user model
-AUTH_USER_MODELS = "accounts.CustomUser"
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+# Authentication settings
+LOGIN_URL = 'accounts:login'  # Where to redirect if not logged in
+LOGIN_REDIRECT_URL = 'accounts:dashboard'  # Where to go after login
+LOGOUT_REDIRECT_URL = 'accounts:login'  # Where to go after logout
